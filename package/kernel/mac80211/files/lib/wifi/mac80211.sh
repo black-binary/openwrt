@@ -171,19 +171,16 @@ detect_mac80211() {
 			set wireless.radio${devidx}=wifi-device
 			set wireless.radio${devidx}.type=mac80211
 			${dev_id}
-            		set wireless.radio0.channel=44
-                    	set wireless.radio0.band=5g
-			set wireless.radio0.noscan=1
-            		set wireless.radio0.htmode=HE40
-	
+			set wireless.radio${devidx}.channel=${channel}
+			set wireless.radio${devidx}.band=${mode_band}
 			set wireless.radio${devidx}.disabled=0
-			set wireless.radio${devidx}.country=US
-			
+			set wireless.radio${devidx}.htmode=$htmode
+
 			set wireless.default_radio${devidx}=wifi-iface
 			set wireless.default_radio${devidx}.device=radio${devidx}
 			set wireless.default_radio${devidx}.network=lan
 			set wireless.default_radio${devidx}.mode=ap
-			set wireless.default_radio${devidx}.ssid=Rockchip_5G
+			set wireless.default_radio${devidx}.ssid=Cc
 			set wireless.default_radio${devidx}.encryption=none
 EOF
 		uci -q commit wireless
@@ -191,3 +188,4 @@ EOF
 		devidx=$(($devidx + 1))
 	done
 }
+
